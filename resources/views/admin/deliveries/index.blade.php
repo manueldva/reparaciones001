@@ -17,10 +17,10 @@
 							{{ form::select('type', config('options.deliverytypes'), null, ['class' => 'form-control', 'id' => 'type'] ) }}
 							{{ form::text('val', null, ['class' => 'form-control', 'id' => 'val']) }}
 							
-							<button type="submit" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-search"></span> Buscar</button>
+							<button type="submit" class="btn btn-sm btn-success"> Buscar</button>
 							@if(Auth::user()->userType !== 'READONLY')
 							<a href="{{ route('deliveries.create')}}" class="btn btn-sm btn-primary">
-								<span class="glyphicon glyphicon-plus"></span> Crear
+								 Crear
 							</a>	
 							@endif
 						</div>

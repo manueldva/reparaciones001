@@ -50,7 +50,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('login') }}"> <span class="glyphicon glyphicon-share-alt"></span> Iniciar Sesión</a></li>
+                            <li><a href="{{ route('login') }}">  Iniciar Sesión</a></li>
                             
                         @else
                             <li>
@@ -84,7 +84,7 @@
                                 </ul>
                                 
                             </li>
-                            
+
                             @if(Auth::user()->userType == 'ADMINISTRATOR')
                             <li>
                                 <a id="users" href="{{ route('manageusers.index') }}">Usuarios </a>

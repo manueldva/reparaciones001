@@ -60,7 +60,7 @@
 
 
 <div class="form-group">
-	<button type="submit" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+	<button type="submit" class="btn btn-sm btn-primary"> Guardar</button>
 </div>
 
 @section('js')

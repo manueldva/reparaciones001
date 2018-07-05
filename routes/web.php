@@ -29,7 +29,11 @@ route::get('etiqueta/{slug}', 'Web\PageController@tag')->name('tag');
 route::resource('clients', 		'Admin\ClientController');
 route::resource('receptions',   'Admin\ReceptionController');
 route::resource('deliveries', 		'Admin\DeliveryController');
+
+route::resource('empresas', 		'Admin\EmpresaController');
+
 route::get('/print/{id}',		'Admin\DeliveryController@print')->name('print');
+route::get('/printvoucher/{id}',		'Admin\DeliveryController@printvoucher')->name('printvoucher');
 
 	//complementos
 route::resource('equipments', 		'Admin\EquipmentController');

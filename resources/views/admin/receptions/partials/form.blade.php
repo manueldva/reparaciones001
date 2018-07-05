@@ -1,7 +1,12 @@
 
 <div class="form-group">
 	{{ form::label('client_id', 'Cliente:') }}
-	{{ form::select('client_id', $clients, null, ['class' => 'form-control', 'placeholder' => 'Seleccionar...', 'id' => 'client_id' ] ) }}
+	@if(isset($reception))
+		{{ form::text('clientname', $reception->client->name, ['class' => 'form-control', 'disabled']) }}
+	@else
+
+		{{ form::select('client_id', $clients, null, ['class' => 'form-control', 'placeholder' => 'Seleccionar...', 'id' => 'client_id' ] ) }}
+	@endif
 </div>
 
 <div class="form-group">

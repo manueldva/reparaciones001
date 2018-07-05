@@ -4,11 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link  rel="icon" href="{!! asset('imagedefault/icono.ico') !!}"/>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', '') }}</title>
+
+
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -41,6 +44,8 @@
                         <li><a href="{{ route('info') }}"> Info</a></li>
                     </ul>
 
+
+
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
@@ -72,10 +77,14 @@
                                         <a href="{{ route('reasons.index') }}">
                                             Razones
                                         </a>
+                                        <a href="{{ route('empresas.edit', 1) }}"> 
+                                            Empresa
+                                        </a>
                                     </li>
                                 </ul>
                                 
                             </li>
+                            
                             @if(Auth::user()->userType == 'ADMINISTRATOR')
                             <li>
                                 <a id="users" href="{{ route('manageusers.index') }}">Usuarios </a>
@@ -99,6 +108,8 @@
                                     <li>
                                         <a id="showSetting" href="{{ route('showSetting', Auth::user()->id) }}">Ajustes </a>
                                     </li>
+
+
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -194,6 +205,10 @@
             $('#complements').css('background','#B5DEF7');
         
         } else if (pathname.indexOf('reasons') != -1) {
+
+            $('#complements').css('background','#B5DEF7');
+
+        } else if (pathname.indexOf('empresas') != -1) {
 
             $('#complements').css('background','#B5DEF7');
         }

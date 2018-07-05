@@ -12,6 +12,7 @@ use App\Http\Requests\DeliveryStoreRequest;
 use App\Http\Requests\DeliveryUpdateRequest;
 
 use App\Delivery;
+use App\Empresa;
 use App\Reception;
 use App\Client;
 use App\reason;
@@ -53,14 +54,30 @@ class DeliveryController extends Controller
      */
     public function create()
     {   
-        $receptions =  array();
+        /*$receptions =  array();*/
 
-        $receptionstemp = Reception::where('status','RECEIVED')->get();
-
+        //$receptions = Reception::where('status','RECEIVED')->orderBy('id', 'DESC')->get();
+        
+        //dd($receptionstemp);
+        /*
         foreach ($receptionstemp as  $value) {
             $client = Client::find($value->client_id);
-            $receptions  = [ $value->id => $value->id .' - '. $client->name];
+            $receptions = [ $value->id => $value->id .' - '. $client->name];
+        }*/
+
+        $temp = Reception::where('status','RECEIVED')->orderBy('id', 'DESC')->get();
+        
+
+        foreach ($temp as  $value) {
+            $client = Client::find($value->client_id);
+            $value->description =  $value->id .' - '. $client->name;
         }
+
+        $receptions = $temp->pluck('description','id');
+       
+
+
+
 
         //$receptions = Reception::where('status','RECEIVED')->orderBy('id', 'ASC')->pluck('id', 'id');
         return view('admin.deliveries.create', compact('receptions'));
@@ -171,6 +188,29 @@ class DeliveryController extends Controller
         exit();*/
 
         $pdf = PDF::loadView('admin.deliveries.print', compact('delivery'));
+
+        return $pdf->stream('reporte');
+
+        //return $pdf->download('informe.pdf');
+
+        //return $id;
+    }
+
+
+    public function printvoucher($id)
+    {
+        /*$delivery = Delivery::where('id', $id)->get();
+        $delivery['0']['deliverDate'] = FechaHelper::getFechaImpresion($delivery['0']['deliverDate']);*/
+
+        $empresa = Empresa::first();
+        $empresa->inicioactividades = FechaHelper::getFechaImpresion($empresa->inicioactividades);
+
+        $delivery = Delivery::find($id);
+        $delivery->deliverDate = FechaHelper::getFechaImpresion($delivery->deliverDate);
+        /*highlight_string(var_export($delivery->reception->client, true));
+        exit();*/
+
+        $pdf = PDF::loadView('admin.deliveries.printvoucher', compact('delivery', 'empresa'));
 
         return $pdf->stream('reporte');
 

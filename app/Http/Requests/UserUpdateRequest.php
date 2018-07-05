@@ -23,11 +23,11 @@ class UserUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        dd($this->id);
+        //dd($this->manageuser);
         return [
             'name'      => 'required',
-            'username'  => 'required|unique:users,username,' . $this->user,
-            'email'     => 'required|unique:users,email,'. $this->user
+            'username'  => 'required|unique:users,username,' . $this->manageuser,
+            'email'     => 'required|unique:users,email,'. $this->manageuser
         ];
     }
 }

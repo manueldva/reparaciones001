@@ -1,5 +1,6 @@
 <div class="form-group">
 	{{ form::label('reception_id', 'Codigo/Cliente Recepción:') }}
+
 	{{ form::select('reception_id', $receptions, null, ['class' => 'form-control', 'placeholder' => 'Seleccionar...'] ) }}
 </div>
 

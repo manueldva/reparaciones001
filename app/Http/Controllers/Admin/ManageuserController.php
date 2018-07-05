@@ -77,7 +77,7 @@ class ManageuserController extends Controller
         $user->password = bcrypt('123456');
         $user->save();
 
-        Alert::success('Usuario creado con exito');
+        Alert::success('Contraseña inicial: 123456', 'Usuario creado con exito')->persistent("Cerrar");
         return redirect()->route('manageusers.edit', $user->id);
     }
 
@@ -117,7 +117,7 @@ class ManageuserController extends Controller
     public function update(UserUpdateRequest $request, $id)
     {
         
-        if ($request->input('name') == ''  || $request->input('username') == '' || $request->input('email') == '') 
+        /*if ($request->input('name') == ''  || $request->input('username') == '' || $request->input('email') == '') 
         {
             //Alert::error('Faltas datos para dar de alta el Usuario');
             return back()->with('danger', 'Complete todos los datos del usuario')->withInput();
@@ -132,7 +132,7 @@ class ManageuserController extends Controller
         if (User::where('email', $request->input('email'))->where('id', '!=',  $id)->first()) 
         {
             return back()->with('danger', 'Este email ya esta en uso')->withInput();
-        }
+        }*/
     
 
         $user = User::find($id);
@@ -140,7 +140,16 @@ class ManageuserController extends Controller
         $user->fill($request->all())->save();
 
 
-        Alert::success('Usuario actualizado con exito');
+        if($request->get('resetear') == "1")
+        {
+            $user->password = bcrypt('123456');
+            $user->save();
+            Alert::success('La contraseña reseteada es: 123456','Usuario actualizado con exito')->persistent("Cerrar");
+        }else {
+            Alert::success('Usuario actualizado con exito');
+        }    
+
+        
         return redirect()->route('manageusers.edit', $user->id);
     }
 

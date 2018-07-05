@@ -38,7 +38,7 @@ class Reception extends Model
 		
 		if ($type == 'id')
         {
-            $query->where('id', $valor)->orderBy('id', 'ASC');
+            $query->where('id', $valor)->orderBy('id', 'DESC');
         } else if ($type == 'client') 
         {
 			$query->whereHas('client', function ($clients) use($valor) {
@@ -48,7 +48,7 @@ class Reception extends Model
 
         } else
         {
-            $query;
+            $query->orderBy('id', 'DESC');
         }
     }
 

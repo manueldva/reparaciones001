@@ -28,6 +28,16 @@
 	</label>
 </div>
 
+@if(isset($user))
+	<div class="form-group">
+	{{ form::label('resetear', 'Resetar Contraseña:') }}
+	<label>
+		{{ Form::checkbox('resetear','1')}} 
+	</label>
+</div>
+
+@endif
+
 
 
 <div class="form-group">

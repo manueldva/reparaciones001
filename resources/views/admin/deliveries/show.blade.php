@@ -8,10 +8,17 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<strong>Ver Entrega</strong>
+					
 					<a  href="{{ route('print', $delivery->id) }}" class="btn btn-sm btn-default pull-right" target="_blank">
 						<span class="glyphicon glyphicon-print"></span>
 						Imprimir Detalle
-					</a>	
+					</a>
+
+					<a  href="{{ route('printvoucher', $delivery->id) }}" class="btn btn-sm btn-default pull-right" target="_blank">
+						<span class="glyphicon glyphicon-print"></span>
+						Imprimir Comprobante
+					</a>
+
 				</div>
 		
 				<div class="panel-body">

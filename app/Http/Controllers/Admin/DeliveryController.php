@@ -98,8 +98,8 @@ class DeliveryController extends Controller
             $reception->status = 'REPAIRING';
         $reception->save();
 
-        Alert::success('Entrega creada con exito');
-        return redirect()->route('deliveries.edit', $delivery->id);
+        Alert::success('Entrega creada con exito')->persistent('Cerrar');
+        return redirect()->route('deliveries.index');
     }
 
     /**
@@ -154,8 +154,8 @@ class DeliveryController extends Controller
 
         $delivery->fill($request->all())->save();
 
-        Alert::success('Entrega actualizada con exito');
-        return redirect()->route('deliveries.edit', $delivery->id);
+        Alert::success('Entrega actualizada con exito')->persistent('Cerrar');
+        return redirect()->route('deliveries.index');
     }
 
     /**
@@ -174,7 +174,7 @@ class DeliveryController extends Controller
 
         $delivery->delete();
 
-        Alert::success('Eliminado correctamente');
+        Alert::success('Eliminado correctamente')->persistent('Cerrar');
         return back();
     }
 
@@ -197,7 +197,7 @@ class DeliveryController extends Controller
     }
 
 
-    public function printvoucher($id)
+    public function printvoucherdelivery($id)
     {
         /*$delivery = Delivery::where('id', $id)->get();
         $delivery['0']['deliverDate'] = FechaHelper::getFechaImpresion($delivery['0']['deliverDate']);*/
@@ -206,11 +206,18 @@ class DeliveryController extends Controller
         $empresa->inicioactividades = FechaHelper::getFechaImpresion($empresa->inicioactividades);
 
         $delivery = Delivery::find($id);
+
+        $delivery->status = 'PRINTED';
+        $delivery->save();
+
         $delivery->deliverDate = FechaHelper::getFechaImpresion($delivery->deliverDate);
         /*highlight_string(var_export($delivery->reception->client, true));
         exit();*/
 
+
+
         $pdf = PDF::loadView('admin.deliveries.printvoucher', compact('delivery', 'empresa'));
+
 
         return $pdf->stream('reporte');
 

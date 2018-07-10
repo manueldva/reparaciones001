@@ -28,12 +28,14 @@ route::get('etiqueta/{slug}', 'Web\PageController@tag')->name('tag');
 //admin
 route::resource('clients', 		'Admin\ClientController');
 route::resource('receptions',   'Admin\ReceptionController');
-route::resource('deliveries', 		'Admin\DeliveryController');
+route::get('/printvoucherreception/{id}',		'Admin\ReceptionController@printvoucherreception')->name('printvoucherreception');
+
 
 route::resource('empresas', 		'Admin\EmpresaController');
 
+route::resource('deliveries', 		'Admin\DeliveryController');
 route::get('/print/{id}',		'Admin\DeliveryController@print')->name('print');
-route::get('/printvoucher/{id}',		'Admin\DeliveryController@printvoucher')->name('printvoucher');
+route::get('/printvoucherdelivery/{id}',		'Admin\DeliveryController@printvoucherdelivery')->name('printvoucherdelivery');
 
 	//complementos
 route::resource('equipments', 		'Admin\EquipmentController');

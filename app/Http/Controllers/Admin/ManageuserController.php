@@ -78,7 +78,7 @@ class ManageuserController extends Controller
         $user->save();
 
         Alert::success('Contraseña inicial: 123456', 'Usuario creado con exito')->persistent("Cerrar");
-        return redirect()->route('manageusers.edit', $user->id);
+        return redirect()->route('manageusers.index');
     }
 
     /**
@@ -146,11 +146,11 @@ class ManageuserController extends Controller
             $user->save();
             Alert::success('La contraseña reseteada es: 123456','Usuario actualizado con exito')->persistent("Cerrar");
         }else {
-            Alert::success('Usuario actualizado con exito');
+            Alert::success('Usuario actualizado con exito')->persistent('Cerrar');
         }    
 
         
-        return redirect()->route('manageusers.edit', $user->id);
+        return redirect()->route('manageusers.index');
     }
 
     /**
@@ -165,7 +165,7 @@ class ManageuserController extends Controller
 
         User::find($id)->delete();
 
-        Alert::success('Eliminado correctamente');
+        Alert::success('Eliminado correctamente')->persistent('Cerrar');
         return back();
     }
 
@@ -218,7 +218,7 @@ class ManageuserController extends Controller
         }
 
 
-        Alert::success('Usuario actualizado con exito');
+        Alert::success('Usuario actualizado con exito')->persistent('Cerrar');
         return view('admin.manageusers.setting', compact('user'));
 
     }

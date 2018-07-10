@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+
+@section('include_delete')
+	@include('include.modal-delete')
+@stop
+
+
 @section('content')
 
 <div class="container">
@@ -35,7 +41,7 @@
 				<div class="panel-body">
 
 					<div class="table-responsive">
-						<table class="table table-striped table-hover">
+						<table class="table table-striped table-hover" data-form="Form">
 							<thead>
 								<tr>
 									<!--<th width="10px"> ID</th>-->
@@ -58,21 +64,27 @@
 												Ver
 											</a>
 										</td>
-										@if(Auth::user()->userType !== 'READONLY')
+									
 										<td width="10px">
-											<a href="{{ route('deliveries.edit', $delivery->id) }}" class="btn btn-sm btn-default">
-												Editar
-											</a>
+											@if(Auth::user()->userType !== 'READONLY')
+												@if($delivery->status == 'NOTPRINTED')
+													<a href="{{ route('deliveries.edit', $delivery->id) }}" class="btn btn-sm btn-default">
+														Editar
+													</a>
+												@endif
+											@endif
 										</td>
 										<td width="10px">
-											{{ Form::open(['route' => ['deliveries.destroy', $delivery->id], 'method' => 'DELETE']) }}
-												{!! Form::open(['route' => ['deliveries.destroy', $delivery->id], 'method' => 'DELETE']) !!}
-	                                        	<button class="btn btn-sm btn-danger">
-	                                            	Eliminar
-	                                        	</button>                           
-	                                    	{!! Form::close() !!}
+											@if(Auth::user()->userType !== 'READONLY')
+												@if($delivery->status == 'NOTPRINTED')
+													{!! Form::model($delivery, ['method' => 'delete', 'route' => ['deliveries.destroy', $delivery->id], 'class' =>'form-inline form-delete']) !!}
+													{!! Form::hidden('id', $delivery->id) !!}
+													{!! Form::submit('Eliminar', ['class' => 'btn btn-sm btn-danger delete', 'name' => 'delete_modal']) !!}
+													{!! Form::close() !!}
+												@endif
+											@endif
 										</td>
-										@endif
+
 									</tr>
 								@endforeach
 							</tbody>
@@ -90,6 +102,10 @@
 
 
 @section('scripts')
+
+	
+	<script src="{{ asset('js/resources/confirm-delete-general.js') }}"></script>
+
 	<script type="text/javascript">
 
 		

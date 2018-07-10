@@ -131,7 +131,7 @@
             </div>
         </nav>
 
-
+        @yield('include_delete')
         
         @if(session('danger'))
             <div class="container">

@@ -20,7 +20,7 @@
 </div>
 
 <div class="form-group">
-    {{ Form::label('image', 'Imagen:') }}
+    {{ Form::label('image', 'Imagen (Opcional):') }}
     {{ Form::file('image') }}
 </div>
 

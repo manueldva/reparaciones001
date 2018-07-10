@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+
+@section('include_delete')
+	@include('include.modal-delete')
+@stop
+
+
 @section('content')
 
 <div class="container">
@@ -33,7 +39,7 @@
 
 				<div class="panel-body">
 					<div class="table-responsive">
-						<table class="table table-striped table-hover">
+						<table class="table table-striped table-hover" data-form="Form">
 							<thead>
 								<tr>
 									<!--<th width="10px"> ID</th>-->
@@ -66,12 +72,10 @@
 													</a>
 												</td>
 												<td width="10px">
-													{{ Form::open(['route' => ['receptions.destroy', $reception->id], 'method' => 'DELETE']) }}
-														{!! Form::open(['route' => ['receptions.destroy', $reception->id], 'method' => 'DELETE']) !!}
-			                                        	<button class="btn btn-sm btn-danger">
-			                                            	Eliminar
-			                                        	</button>                           
-			                                    	{!! Form::close() !!}
+													{!! Form::model($reception, ['method' => 'delete', 'route' => ['receptions.destroy', $reception->id], 'class' =>'form-inline form-delete']) !!}
+													{!! Form::hidden('id', $reception->id) !!}
+													{!! Form::submit('Eliminar', ['class' => 'btn btn-sm btn-danger delete', 'name' => 'delete_modal']) !!}
+													{!! Form::close() !!}
 												</td>
 											@else
 												<td width="10px">
@@ -99,6 +103,9 @@
 
 
 @section('scripts')
+
+	<script src="{{ asset('js/resources/confirm-delete-general.js') }}"></script>
+	
 	<script type="text/javascript">
 
 		function searchType(){ 

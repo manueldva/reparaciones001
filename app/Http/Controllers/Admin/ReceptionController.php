@@ -10,7 +10,11 @@ use App\Http\Requests\ReceptionUpdateRequest;
 use Illuminate\Support\Facades\Storage;
 use Alert;
 
+use App\Helpers\FechaHelper;
+use Barryvdh\DomPDF\Facade as PDF;
+
 use App\Delivery;
+use App\Empresa;
 use App\Reception;
 use App\Client;
 use App\Reason;
@@ -77,8 +81,8 @@ class ReceptionController extends Controller
             $reception->fill(['file' => asset($path)])->save();
         }
 
-        Alert::success('Recepción creada con exito');
-        return redirect()->route('receptions.edit', $reception->id);
+        Alert::success('Recepción creada con exito')->persistent('Cerrar');
+        return redirect()->route('receptions.index');
     }
 
     /**
@@ -130,8 +134,8 @@ class ReceptionController extends Controller
             $reception->fill(['file' => asset($path)])->save();
         }
 
-        Alert::success('Recepción actualizada con exito');
-        return redirect()->route('receptions.edit', $reception->id);
+        Alert::success('Recepción actualizada con exito')->persistent('Cerrar');
+        return redirect()->route('receptions.index');
     }
 
     /**
@@ -145,13 +149,38 @@ class ReceptionController extends Controller
         
         if(Delivery::where('reception_id', $id)->first()) 
         {
-            Alert::error('No se puede eliminar el registro');
+            Alert::error('No se puede eliminar el registro')->persistent('Cerrar');
             return back();
         }
 
         Reception::find($id)->delete();
 
-        Alert::success('Eliminado correctamente');
+        Alert::success('Eliminado correctamente')->persistent('Cerrar');
         return back();
     }
+
+
+    public function printvoucherreception($id)
+    {
+        /*$delivery = Delivery::where('id', $id)->get();
+        $delivery['0']['deliverDate'] = FechaHelper::getFechaImpresion($delivery['0']['deliverDate']);*/
+
+        $empresa = Empresa::first();
+        $empresa->inicioactividades = FechaHelper::getFechaImpresion($empresa->inicioactividades);
+
+        $reception = Reception::find($id);
+        $reception->description = FechaHelper::getFechaImpresion( now());
+        
+        //dd($reception);
+        
+        
+        $pdf = PDF::loadView('admin.receptions.printvoucher', compact('reception', 'empresa'));
+
+        return $pdf->stream('reporte');
+
+        //return $pdf->download('informe.pdf');
+
+        //return $id;
+    }
+
 }

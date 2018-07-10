@@ -12,7 +12,7 @@
 					<a  href="{{ route('print', $delivery->id) }}" class="btn btn-sm btn-default pull-right" target="_blank">
 						Imprimir Detalle
 					</a>
-					<a  href="{{ route('printvoucher', $delivery->id) }}" class="btn btn-sm btn-default pull-right" target="_blank">
+					<a  href="{{ route('printvoucherdelivery', $delivery->id) }}" class="btn btn-sm btn-default pull-right" target="_blank">
 						
 						Imprimir Comprobante
 					</a>

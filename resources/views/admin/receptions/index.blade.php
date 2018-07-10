@@ -16,12 +16,14 @@
 					<strong>Lista de Recepciones</strong> 
 					<form class="navbar-form navbar-right" role="search">
 					
-						{{ Form::model(Request::only('type', 'val'), array('route' => 'receptions.index', 'method' => 'GET'), array('role' => 'form', 'class' => 'navbar-form pull-right')) }}
+						{{ Form::model(Request::only('type', 'val','status'), array('route' => 'receptions.index', 'method' => 'GET'), array('role' => 'form', 'class' => 'navbar-form pull-right')) }}
 						<div class="form-group">
 							{{ form::label('buscar', 'Tipo Busqueda:') }}
 							{{ form::select('type', config('options.receptiontypes'), null, ['class' => 'form-control', 'id' => 'type'] ) }}
 							{{ form::text('val', null, ['class' => 'form-control', 'id' => 'val']) }}
-							
+							<span id="status" class="form-group">
+								{{ Form::select('status', ['WAITING' => 'En Espera', 'RECEIVED' => 'Recibido', 'REPAIRING' => 'Reparado'], null, ['class'=>'form-control', 'id' => 'status','placeholder' => 'Seleccionar...']) }}
+							</span>
 							<button type="submit" class="btn btn-sm btn-success"> Buscar</button>
 							@if(Auth::user()->userType !== 'READONLY')
 							<a href="{{ route('receptions.create')}}" class="btn btn-sm btn-primary">
@@ -91,7 +93,7 @@
 							</tbody>
 						</table>
 					</div>
-					{{ $receptions->appends(Request::only(['type', 'val']))->render() }}
+					{{ $receptions->appends(Request::only(['type', 'val','status']))->render() }}
 					
 				</div>
 			</div>
@@ -112,10 +114,18 @@
 		    var type = $('#type').val();
 			if (type == 'id')
 			{
+				$('#val').show();
+				$('#status').hide();
 				$('#val').attr('type','number');
 				$('#val').focus();
+			}else if (type == 'status')
+			{
+				$('#val').hide();
+				$('#status').show();
 			} else
 			{
+				$('#val').show();
+				$('#status').hide();
 				$('#val').attr('type','text');
 				$('#val').focus();
 			}
@@ -126,6 +136,12 @@
 
 		$('#type').change(function(e) {
 			searchType(); 
+
+			$('#val').val('');
+			$('#val').focus();
+      //$("#cajas").val($("#cajas option:first").val());
+			//$("#rubros").val($("#rubros option:first").val());
+			$('#status').val('');
 		});
 
 

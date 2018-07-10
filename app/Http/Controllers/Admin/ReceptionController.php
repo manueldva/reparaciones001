@@ -37,9 +37,10 @@ class ReceptionController extends Controller
     {
        //$receptions = Reception::orderBy('id', 'DESC')->paginate();
 
-        $receptions = Reception::type($request->get('type'), $request->get('val'))->paginate(10);
+        $receptions = Reception::type($request->get('type'), $request->get('val'),$request->get('status'))->paginate(1);
         $receptions->setPath('receptions');
 
+        //$status[] = ['WAITING' => 'En Espera', 'RECEIVED' => 'Recibido', 'REPAIRING' => 'Reparado'];
         //return $receptions;
 
 

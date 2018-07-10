@@ -77,13 +77,17 @@
                                         <a href="{{ route('reasons.index') }}">
                                             Razones
                                         </a>
-                                        <a href="{{ route('empresas.edit', 1) }}"> 
-                                            Empresa
-                                        </a>
                                     </li>
                                 </ul>
                                 
                             </li>
+                            @if(Auth::user()->userType !== 'READONLY')
+                                <li>
+                                    <a id="empresas" href="{{ route('empresas.edit', 1) }}"> 
+                                        Empresa
+                                    </a>
+                                </li>   
+                            @endif
 
                             @if(Auth::user()->userType == 'ADMINISTRATOR')
                             <li>
@@ -210,7 +214,7 @@
 
         } else if (pathname.indexOf('empresas') != -1) {
 
-            $('#complements').css('background','#B5DEF7');
+            $('#empresas').css('background','#B5DEF7');
         }
 
     </script>

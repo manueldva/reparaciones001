@@ -18,8 +18,9 @@
 					
 						{{ Form::model(Request::only('type', 'val','status'), array('route' => 'receptions.index', 'method' => 'GET'), array('role' => 'form', 'class' => 'navbar-form pull-right')) }}
 						<div class="form-group">
-							{{ form::label('buscar', 'Tipo Busqueda:') }}
+							{{ form::label('buscar', 'T. Busqueda:') }}
 							{{ form::select('type', config('options.receptiontypes'), null, ['class' => 'form-control', 'id' => 'type'] ) }}
+
 							{{ form::text('val', null, ['class' => 'form-control', 'id' => 'val']) }}
 							<span id="status" class="form-group">
 								{{ Form::select('status', ['WAITING' => 'En Espera', 'RECEIVED' => 'Recibido', 'REPAIRING' => 'Reparado'], null, ['class'=>'form-control', 'id' => 'status','placeholder' => 'Seleccionar...']) }}
@@ -34,10 +35,11 @@
 						
 						{{ Form::close() }}
 					</form>
+
 				<br>
 				<br>	
 				</div>
-		
+				
 
 				<div class="panel-body">
 					<div class="table-responsive">
@@ -117,7 +119,7 @@
 				$('#val').show();
 				$('#status').hide();
 				$('#val').attr('type','number');
-				$('#val').focus();
+				//$('#val').focus();
 			}else if (type == 'status')
 			{
 				$('#val').hide();
@@ -127,7 +129,7 @@
 				$('#val').show();
 				$('#status').hide();
 				$('#val').attr('type','text');
-				$('#val').focus();
+				//$('#val').focus();
 			}
 		}
 

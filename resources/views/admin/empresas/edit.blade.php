@@ -12,7 +12,7 @@
 		
 				<div class="panel-body">
 
-					{!! Form::model($empresa, ['route' => ['empresas.update', $empresa->id], 'method' => 'PUT']) !!}
+					{!! Form::model($empresa, ['route' => ['empresas.update', $empresa->id], 'method' => 'PUT', 'files' => true]) !!}
                         
                         @include('admin.empresas.partials.form')
 

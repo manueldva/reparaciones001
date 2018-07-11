@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests\EmpresaUpdateRequest;
+use Illuminate\Support\Facades\Storage;
 use App\Helpers\FechaHelper;
 use Alert;
 
@@ -82,11 +83,18 @@ class EmpresaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EmpresaUpdateRequest $request, $id)
     {
         $empresa = Empresa::find($id);
 
         $empresa->fill($request->all())->save();
+
+
+         //IMAGE 
+        if($request->file('image')){
+            $path = Storage::disk('public')->put('image',  $request->file('image'));
+            $empresa->fill(['file' => asset($path)])->save();
+        }
 
         Alert::success('Empresa actualizada con exito');
         return redirect()->route('empresas.edit', $empresa->id);

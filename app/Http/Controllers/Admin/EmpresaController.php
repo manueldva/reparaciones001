@@ -96,7 +96,7 @@ class EmpresaController extends Controller
             $empresa->fill(['file' => asset($path)])->save();
         }
 
-        Alert::success('Empresa actualizada con exito');
+        Alert::success('Empresa actualizada con exito')->presistent('Cerrar');
         return redirect()->route('empresas.edit', $empresa->id);
     }
 

@@ -74,6 +74,9 @@
 
 		
 		$('#client_id').select2();
+		$('#equipment_id').select2();
+		$('#reason_id').select2();
+		
 
 	</script>
 @endsection

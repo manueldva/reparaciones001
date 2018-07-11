@@ -22,12 +22,16 @@ exit();*/
       <tr>
         <td>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <center><strong>Empresa <br>
+        <center> 
          <!--Alta Complejidad <br>-->
-         @if(isset($empresa->nombre))
+         @if($empresa->file)
+              <img src="{{ $empresa->file }}" height="70" width="120" ><br>
+         @elseif(isset($empresa->nombre))
+          <strong>Empresa<br>
           "{{$empresa->nombre}}" <br>
          @else
-             "Nombre Empresa"<br>
+            <strong>Empresa<br>
+            "Nombre Empresa"<br>
          @endif
          @if(isset($empresa->direccion))
           </strong> {{$empresa->direccion}}<br>

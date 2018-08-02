@@ -38,6 +38,15 @@
 	{{ form::date('inicioactividades', null, ['class' => 'form-control']) }}
 </div>
 
+<div class="form-group">
+	{{ form::label('cellPhone', 'Nro Celular (opcional):') }}
+	{{ form::number('cellPhone', null, ['class' => 'form-control', 'id' => 'cellPhone']) }}
+</div>
+<div class="form-group">
+	{{ form::label('phone', 'Nro Telefono (opcional):') }}
+	{{ form::number('phone', null, ['class' => 'form-control', 'id' => 'phone']) }}
+</div>
+
 
 
 

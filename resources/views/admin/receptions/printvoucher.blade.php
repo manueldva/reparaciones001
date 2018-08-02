@@ -33,12 +33,8 @@ exit();*/
             <strong>Empresa<br>
             "Nombre Empresa"<br>
          @endif
-         @if(isset($empresa->direccion))
-          </strong> {{$empresa->direccion}}<br>
-         @else
-          </strong> S/D<br>
-         @endif 
-         - <br>
+        
+          <br>
         <!-- <strong>I.V.A. EXENTO</strong>-->
        </center></td>
 
@@ -61,24 +57,15 @@ exit();*/
         <td colspan="4">Domicilio: <strong>{{ $reception->client->address }}</strong></td>
       </tr>
       <tr>
+        <td colspan="2">Nro Telefono: <strong>{{ $reception->client->phone }}</strong></td>
+        <td colspan="2">Nro Celular: <strong>{{ $reception->client->cellPhone }}</strong></td>
+      </tr>
+      <tr>
       	<td colspan="4">
 	        <table class="collapse">
 			    <thead>
 			      <tr>
-			        <td><strong>I.V.A.</strong></td>
-
-			        <td><label>Exento<input type="checkbox" name="exento" id="exento"></label></td>
-
-			        <td><label>No Resp.<input type="checkbox" name="noresp" id="noresp"></label></td>
-
-			        <td><label>C. Final<input type="checkbox" name="cfinal" id="cfinal"></label></td>
-
-			        <td><label>Resp. Insc.<input type="checkbox" name="respinsc" id="respinsc"></label></td>
-
-			        <td><label>Monotributo<input type="checkbox" name="monotributo" id="monotributo"></label></td>
-
-			        <td><strong>CUIT N°:</strong>........................</td>
-
+			        <td><strong>Numero de IMEI: {{ $reception->imei }}</strong></td>
 			      </tr>
 			    </thead>
 			</table>
@@ -105,27 +92,19 @@ exit();*/
 
       <tr>
       	<td colspan="2">
-	        <table class="collapse">
+        <table class="collapse">
 			    <thead>
 			      <tr>
-			        <td><H3><strong> RECIBIDO </strong></H3><br>
-			        <table class="collapse">
-                <thead>
-                  <tr>
-                    <td>
-                      <strong>&nbsp;</strong>
-                    </td>
-                    <td>
-                      <input type="text" name="total" id="total" value="&nbsp;"><br>
-                    </td>
-                  </tr>
-                </thead>
-              </table>
-			        </td>
+			        <td>
+              <H4><strong>Sucursal: {{ isset($empresa->direccion) ? $empresa->direccion : "-"}}</strong></H4>
+			        <H4><strong>Telefono: {{ isset($empresa->phone) ? $empresa->phone : "-"}}  </strong></H4>
+              <H4><strong>Celular:  {{ isset($empresa->cellPhone) ? $empresa->cellPhone : "-"}} </strong></H4>
+             
+			      	</td>
 			      </tr>
 			    </thead>
 			</table>
-		</td>
+         </td>
       	<td colspan="2">
 	        <table class="collapse">
 			    <thead>
@@ -140,4 +119,5 @@ exit();*/
       </tr>
     </tbody>   
   </table>
+  <center><h5><strong>Garantia 30 dias</strong></h5></center>
 @stop

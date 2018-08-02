@@ -20,10 +20,22 @@
 					<p> <strong>Codigo:</strong> {{ $reception->id }}</p>
 
 					<p> <strong>Cliente:</strong> {{ $reception->client->name }}</p>
-
+					
 					<p> <strong>Equipo:</strong> {{ $reception->equipment->description }}</p>
 
+					@if($reception->imei)
+						<p> <strong>Numero de IMEI:</strong> {{ $reception->imei }}</p>
+                    @endif
+
+					<p> <strong>Descripción:</strong> {{ $reception->description }}</p>
+
+					<p> <strong>Razón:</strong> {{ $reception->reason->description }}</p>
+
 					<p> <strong>Concepto:</strong> {{ $reception->concept }}</p>
+				
+					@if($reception->budget)
+						<p> <strong>Presupuesto:</strong> {{ $reception->budget }}</p>
+                    @endif
 
 					@if($reception->file)
 					<p> <strong>Imagen:</strong></p>

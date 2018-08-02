@@ -14,6 +14,12 @@
 	{{ form::select('equipment_id', $equipments, null, ['class' => 'form-control','placeholder' => 'Seleccionar...'] ) }}
 </div>
 
+
+<div class="form-group">
+	{{ form::label('imei', 'Numero de IMEI (Opcional):') }}
+	{{ form::text('imei', null, ['class' => 'form-control', 'id' => 'imei']) }}
+</div>
+
 <div class="form-group">
 	{{ form::label('description', 'Descripcion:') }}
 	{{ form::textarea('description', null, ['class' => 'form-control']) }}
@@ -25,7 +31,7 @@
 </div>
 
 <div class="form-group">
-	{{ form::label('reason_id', 'Razon:') }}
+	{{ form::label('reason_id', 'Razón:') }}
 	{{ form::select('reason_id', $reasons, null, ['class' => 'form-control','placeholder' => 'Seleccionar...'] ) }}
 </div>
 
@@ -33,6 +39,13 @@
 	{{ form::label('concept', 'Concepto:') }}
 	{{ form::textarea('concept', null, ['class' => 'form-control']) }}
 </div>
+
+<div class="form-group">
+	{{ form::label('budget', 'Presupuesto (Opcional):') }}
+	{{ form::number('budget', null, ['class' => 'form-control', 'id' => 'budget', 'step' => '0.01']) }}
+</div>
+
+
 
 @if (isset($reception))
 	@if($reception->status !== 'REPAIRING')

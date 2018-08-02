@@ -28,7 +28,11 @@
 					
 					<p> <strong>Trabajo Hecho:</strong> {{ $delivery->workDone }}</p>
 
+					<p> <strong>Fecha:</strong> {{ $delivery->deliverDate }}</p>
+
 					<p> <strong>Precio Trabajo:</strong> {{ $delivery->workPrice }}</p>
+
+					
 				</div>
 			</div>
 		</div>

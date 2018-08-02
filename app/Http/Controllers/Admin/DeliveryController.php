@@ -112,6 +112,8 @@ class DeliveryController extends Controller
     {
         $delivery = Delivery::find($id);
 
+        $delivery->deliverDate = FechaHelper::getFechaImpresion($delivery->deliverDate); 
+
         return view('admin.deliveries.show', compact('delivery'));
     }
 

@@ -98,7 +98,7 @@ exit();*/
 			        <td>
               <H4><strong>Sucursal: {{ isset($empresa->direccion) ? $empresa->direccion : "-"}}</strong></H4>
 			        <H4><strong>Telefono: {{ isset($empresa->phone) ? $empresa->phone : "-"}}  </strong></H4>
-              <H4><strong>Celular:  {{ isset($empresa->cellPhone) ? $empresa->cellPhone : "-"}} </strong></H4>
+              <H4><strong>WhatsApp:  {{ isset($empresa->cellPhone) ? $empresa->cellPhone : "-"}} </strong></H4>
              
 			      	</td>
 			      </tr>

@@ -3,11 +3,11 @@
 	{{ form::text('name', null, ['class' => 'form-control', 'id' => 'name']) }}
 </div>
 <div class="form-group">
-	{{ form::label('address', 'Dirección:') }}
+	{{ form::label('address', 'Dirección (opcional):') }}
 	{{ form::text('address', null, ['class' => 'form-control', 'id' => 'address']) }}
 </div>
 <div class="form-group">
-	{{ form::label('cellPhone', 'Nro Celular:') }}
+	{{ form::label('cellPhone', 'Nro Celular (opcional):') }}
 	{{ form::number('cellPhone', null, ['class' => 'form-control', 'id' => 'cellPhone']) }}
 </div>
 <div class="form-group">

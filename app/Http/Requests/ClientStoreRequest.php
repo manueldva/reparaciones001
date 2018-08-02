@@ -24,9 +24,9 @@ class ClientStoreRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|unique:clients,name',
-            'address' => 'required',
-            'cellPhone' => 'required'
+            'name' => 'required|unique:clients,name'
+            //'address' => 'required',
+            //'cellPhone' => 'required'
         ];
 
         if($this->get('phone'))

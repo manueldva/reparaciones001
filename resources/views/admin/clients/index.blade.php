@@ -53,8 +53,9 @@
 									<tr>
 										<!--<td>{{ $client->id }}</td>-->
 										<td>{{ $client->name }}</td>
-										<td>{{ $client->address }}</td>
-										<td>{{ $client->cellPhone }}</td>
+										
+										<td>{{ isset($client->address) ? $client->address : '-'  }}</td>
+										<td>{{ isset($client->cellPhone) ? $client->cellPhone : '-' }}</td>
 										<td width="10px">
 											<a href="{{ route('clients.show', $client->id) }}" class="btn btn-sm btn-default">
 												Ver

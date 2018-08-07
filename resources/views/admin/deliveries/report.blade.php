@@ -92,6 +92,8 @@
 		$('#year').change(function() {
 			
 			
+			$('#month').val('');
+			
 			$('#vent').val('');
 
 			$('#cost').val('');

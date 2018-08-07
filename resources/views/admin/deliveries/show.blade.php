@@ -27,6 +27,13 @@
 					<p> <strong>Equipo:</strong> {{ $delivery->reception->equipment->description }}</p>
 					
 					<p> <strong>Trabajo Hecho:</strong> {{ $delivery->workDone }}</p>
+					@if($delivery->cost)
+						<p> <strong>Costo Reparación/Producto:</strong> {{ $delivery->cost }}</p>
+					@endif
+					
+					@if($delivery->observationCost)
+						<p> <strong>Observación Costo:</strong> {{ $delivery->observationCost }}</p>
+					@endif
 
 					<p> <strong>Fecha:</strong> {{ $delivery->deliverDate }}</p>
 

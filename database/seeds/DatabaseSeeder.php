@@ -11,13 +11,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        /*DB::table('users')->insert([
             'name' => 'administrador',
             'username' => 'admin',
             'email' => 'admin@admin.com',
             'password' => bcrypt('@dmin2018'),
             'userType' => 'ADMINISTRATOR',
-        ]);
+        ]);*/
 
 
         DB::table('empresas')->insert([

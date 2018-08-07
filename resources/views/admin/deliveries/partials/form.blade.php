@@ -14,6 +14,16 @@
 </div>
 
 <div class="form-group">
+	{{ form::label('cost', 'Costo Reparación/Producto (Opcional):') }}
+	{{ form::number('cost', null, ['class' => 'form-control', 'id' => 'cost', 'step' => '0.01']) }}
+</div>
+
+<div class="form-group">
+	{{ form::label('observationCost', 'Observación Costo (Opcional):') }}
+	{{ form::textarea('observationCost', null, ['class' => 'form-control']) }}
+</div>
+
+<div class="form-group">
 	{{ form::label('workPrice', 'Precio del Trabajo:') }}
 	{{ form::number('workPrice', null, ['class' => 'form-control', 'id' => 'workPrice', 'step' => '0.01']) }}
 </div>

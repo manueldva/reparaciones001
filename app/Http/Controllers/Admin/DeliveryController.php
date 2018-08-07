@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Helpers\FechaHelper;
 use Barryvdh\DomPDF\Facade as PDF;
 use Alert;
-
+use DB;
 use App\Http\Requests\DeliveryStoreRequest;
 use App\Http\Requests\DeliveryUpdateRequest;
 
@@ -226,5 +226,44 @@ class DeliveryController extends Controller
         //return $pdf->download('informe.pdf');
 
         //return $id;
+    }
+
+    public function showdeliveryreport($id)
+    {
+            
+            $year = date("Y");
+
+            $yearA = $year - 1;
+
+            $years = array( $year => $year, $yearA => $yearA);
+
+            $months = array( 1 => 'Enero', 2 => 'Febrero', 3 =>'Marzo', 4 =>'Abril', 5 =>'Mayo', 6=>'Junio', 7 =>'Julio',
+               8 =>'Agosto', 9 =>'Septiembre', 10 =>'octubre', 11 =>'Noviembre', 12 =>'Diciembre');
+
+            return view('admin.deliveries.report', compact('months', 'year','years'));
+            //return $id;
+    }
+
+
+    public function deliveryreport($year, $month)
+    {
+        
+        $cost = DB::table('deliveries')
+        //->select('workPrice')
+        ->whereYear('deliverDate', '=', $year)
+        ->whereMonth('deliverDate', '=', $month)
+        ->sum('cost');  
+
+
+        $workPrice = DB::table('deliveries')
+       //->select('workPrice')
+        ->whereYear('deliverDate', '=', $year)
+        ->whereMonth('deliverDate', '=', $month)
+        ->sum('workPrice');
+
+
+        $resultado[] = ['workPrice'=>$workPrice, 'cost'=>$cost];
+
+        return $resultado;
     }
 }

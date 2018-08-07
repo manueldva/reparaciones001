@@ -53,6 +53,19 @@
                             <li><a href="{{ route('login') }}">  Iniciar Sesión</a></li>
                             
                         @else
+                            <li class="dropdown">
+                                <a id="reports" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                    <!--<span class="glyphicon glyphicon-user"></span>-->
+                                    Informes <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{{ route('showdeliveryreport', 1) }}">
+                                            Informe Costo/Venta
+                                        </a>
+                                    </li>
+                                </ul>
                             <li>
                                 <a id="deliveries" href="{{ route('deliveries.index') }}">Entregas</a>
                             </li>
@@ -215,6 +228,10 @@
         } else if (pathname.indexOf('empresas') != -1) {
 
             $('#empresas').css('background','#B5DEF7');
+        
+        } else if (pathname.indexOf('showdeliveryreport') != -1) {
+
+            $('#reports').css('background','#B5DEF7');
         }
 
     </script>

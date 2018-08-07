@@ -23,7 +23,7 @@
                                         </div>
                                         <div class="col-xs-9 text-right">
                                             <div class="huge"><h4><b>{{ $waiting }}</b></h4></div>
-                                            <div>En Espera!</div>
+                                            <div>Cobrado!</div>
                                         </div>
                                     </div>
                                 </div>

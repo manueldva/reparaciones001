@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use DB;
 use App\Reception;
 
 class InfoController extends Controller
@@ -14,7 +14,7 @@ class InfoController extends Controller
 
     	$received  = Reception::where('status', 'RECEIVED')->count();
     	$repairing = Reception::where('status', 'REPAIRING')->count();
-    	$waiting   = Reception::where('status', 'WAITING')->count();
+    	$waiting   = $workPrice = DB::table('deliveries')->sum('workPrice');//Reception::where('status', 'WAITING')->count();
     	//$posts = Post::orderBy('id','DESC')->where('status','PUBLISHED')->paginate(5);
     	return view('web.infos', compact('received', 'repairing', 'waiting'));
     }

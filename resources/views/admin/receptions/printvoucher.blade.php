@@ -84,7 +84,7 @@ exit();*/
         <td colspan="4">&nbsp;</td>
       </tr>
       <tr>
-         <td colspan="4">Presupuesto $: <strong></strong></td>
+         <td colspan="4">Presupuesto $: {{ $reception->budget }}<strong></strong></td>
       </tr>
       <tr>
         <td colspan="4"> &nbsp;<strong>  </strong></td>

@@ -12,7 +12,7 @@ class InfoController extends Controller
 
     public function info(){
 
-    	$received  = Reception::where('status', 'RECEIVED')->count();
+		$received  = Reception::where('status', 'RECEIVED')->count();
     	$repairing = Reception::where('status', 'REPAIRING')->count();
     	$waiting   = DB::table('deliveries')->sum('workPrice');//Reception::where('status', 'WAITING')->count();
     	//$posts = Post::orderBy('id','DESC')->where('status','PUBLISHED')->paginate(5);

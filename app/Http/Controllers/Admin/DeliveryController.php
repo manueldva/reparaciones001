@@ -191,7 +191,7 @@ class DeliveryController extends Controller
 
         $pdf = PDF::loadView('admin.deliveries.print', compact('delivery'));
 
-        return $pdf->stream('reporte');
+        return $pdf->stream('reporte.pdf');
 
         //return $pdf->download('informe.pdf');
 
@@ -221,7 +221,7 @@ class DeliveryController extends Controller
         $pdf = PDF::loadView('admin.deliveries.printvoucher', compact('delivery', 'empresa'));
 
 
-        return $pdf->stream('reporte');
+        return $pdf->stream('reporte.pdf');
 
         //return $pdf->download('informe.pdf');
 
